@@ -1,0 +1,83 @@
+.home {
+  position: relative;
+	padding: 56px 20px;
+	min-height: 100%;
+	width: 100%;
+  font-family: ui-sans-serif, system-ui, -apple-system,
+  BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.backgroundImg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: 0 0;
+}
+
+.logo {
+  background-color: hsl(243, 93%, 70%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  text-align: center;
+  padding-top: 2px;
+  color: hsl(210, 36%, 96%);
+  margin: 75px auto;
+}
+
+.S {
+  font-size: 48px;
+}
+
+.bar {
+  font-size: 64px;
+}
+
+.R {
+  font-size: 48px;
+}
+
+.content {
+  width: 377px;
+  height: 357px;
+  margin: 0 auto;
+}
+
+.text1, .text2 {
+  font-size: 24px;
+}
+
+.text1 {
+  color: hsl(209, 61%, 16%);
+}
+
+.text2 {
+  color: hsl(209, 34%, 30%);
+}
+
+.button {
+  all: unset;
+  width: 154px;
+  height: 54px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.signUp {
+  background-color: hsl(160, 51%, 49%);
+  color: hsl(209, 61%, 16%);
+  margin-left: 9px;
+  margin-right: 51px;
+}
+
+.logIn {
+  background-color: hsl(238, 100%, 88%);
+  color: hsl(209, 61%, 16%);
+}
