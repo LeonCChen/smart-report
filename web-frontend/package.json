@@ -21,6 +21,8 @@
     ]
   },
   "dependencies": {
+    "@types/crypto-js": "^4.0.1",
+    "crypto-js": "3.3.0",
     "preact": "^10.3.1",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1"
