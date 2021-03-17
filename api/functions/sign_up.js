@@ -8,6 +8,8 @@ exports.handler = async function (event) {
   var sql_command = `INSERT INTO USER (email, hash, salt) VALUES ( '${email}', '${hash}', '${salt}')`
   console.log(sql_command);
 
+  console.log('user:', process.env.user);
+
   await mariadb.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
