@@ -1,20 +1,26 @@
 var mysql = require('mysql');
 
-var connection = mysql.createConnection ({
-	host:'165.227.217.87',
-	user: 'test',
-	password: 'dillon',
-	database: 'the_smart_report'
-});
+exports.handler = async function (event, context) {
 
-connection.connect();
+	var {email, hash, salt} = event.queryStringParamters;
 
-var sql_command = "INSERT INTO USER (email, hash, salt) VALUES ('123', '456', '789')"
-connection.query(sql_command, function(err, rows) {
-	if (err)
-		throw err;
-	console.dir(rows);
+	var connection = mysql.createConnection ({
+		host:'165.227.217.87',
+		user: 'test',
+		password: 'dillon',
+		database: 'the_smart_report'
+	});
 
-});
+	connection.connect();
 
-connection.end();
+	var sql_command = `INSERT INTO USER (email, hash, salt) VALUES ( '${email}', '${hash}', '${salt}')`
+	connection.query(sql_command, function(err, rows) {
+		if (err)
+			throw err;
+		console.dir(rows);
+
+	});
+
+	connection.end();
+
+}
