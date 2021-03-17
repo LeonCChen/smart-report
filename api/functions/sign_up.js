@@ -6,9 +6,6 @@ exports.handler = async function (event) {
   hash = decodeURIComponent(hash);
   salt = decodeURIComponent(salt);
   var sql_command = `INSERT INTO USER (email, hash, salt) VALUES ( '${email}', '${hash}', '${salt}')`
-  console.log(sql_command);
-
-  console.log('user:', process.env.USER);
 
   await mariadb.createConnection({
     host: process.env.HOST,
@@ -16,9 +13,8 @@ exports.handler = async function (event) {
     password: process.env.PASSWORD,
     database: process.env.DATABASE
   }).then(connection => {
-    connection.query(sql_command).then(rows => {
+    connection.query(sql_command).then(() => {
       console.log('insert successful');
-      console.log(rows);
     }).catch(err => {
       console.log(err);
     });
