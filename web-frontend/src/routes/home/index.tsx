@@ -1,4 +1,5 @@
 import {Fragment, FunctionalComponent, h} from 'preact';
+import {route} from 'preact-router';
 import ProgressiveImage from '../../components/progressive-image';
 import style from './style.css';
 
@@ -24,7 +25,12 @@ const Home: FunctionalComponent = () => {
           often you want your newsletter, and whether you
           want it to personalize based on the stories you
           read. We'll take care of the rest.</p>
-          <button class={`${style.button} ${style.signUp}`}>
+          <button
+            class={`${style.button} ${style.signUp}`}
+            onClick={(): void => {
+              route('/signup')
+            }}
+          >
             Sign Up
         </button>
           <button class={`${style.button} ${style.logIn}`}>
