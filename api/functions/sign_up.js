@@ -26,7 +26,7 @@ exports.handler = async function (event, context) {
   return {
     statusCode: 200,
     headers: {
-      'access-control-allow-origin': 'adoring-pare-ef65be.netlify.app'
+      'Access-Control-Allow-Origin': 'adoring-pare-ef65be.netlify.app'
     }
   };
 
