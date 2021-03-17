@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 exports.handler = async function (event, context) {
 
-  var {email, hash, salt} = event.queryStringParamters;
+  var {email, hash, salt} = event.queryStringParamaters;
 
   var connection = mysql.createConnection({
     host: '165.227.217.87',
