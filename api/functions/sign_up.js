@@ -3,11 +3,8 @@ var mysql = require('mysql');
 exports.handler = async function (event, context) {
   var {email, hash, salt} = event.queryStringParameters;
   email = decodeURIComponent(email);
-  console.log('email:', email);
   hash = decodeURIComponent(hash);
-  console.log('hash:', hash);
   salt = decodeURIComponent(salt);
-  console.log('salt:', salt);
 
   var connection = mysql.createConnection({
     host: '165.227.217.87',
@@ -19,6 +16,7 @@ exports.handler = async function (event, context) {
   connection.connect();
 
   var sql_command = `INSERT INTO USER (email, hash, salt) VALUES ( '${email}', '${hash}', '${salt}')`
+  console.log(sql_command);
   connection.query(sql_command, function (err, rows) {
     if (err)
       throw err;
@@ -31,7 +29,7 @@ exports.handler = async function (event, context) {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'adoring-pare-ef65be.netlify.app'
+      'Access-Control-Allow-Origin': '*'
     }
   };
 
