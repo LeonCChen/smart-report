@@ -9,10 +9,10 @@ exports.handler = async function (event) {
   console.log(sql_command);
 
   await mariadb.createConnection({
-    host: '165.227.217.87',
-    user: 'test',
-    password: 'dillon',
-    database: 'the_smart_report'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
   }).then(connection => {
     connection.query(sql_command).then(rows => {
       console.log('insert successful');
