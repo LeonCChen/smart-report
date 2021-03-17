@@ -10,7 +10,7 @@ const SignUp: FunctionComponent = () => {
 
   const handleSubmit = (): void => {
     const {hash, salt} = encodePass(password);
-    fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURI(email)}&hash=${encodeURI(hash)}&salt=${encodeURI(salt)}`);
+    fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}&salt=${encodeURIComponent(salt)}`);
   }
 
   return (
