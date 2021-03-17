@@ -9,7 +9,8 @@ const SignUp: FunctionComponent = () => {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (): void => {
-    console.log(encodePass(password));
+    const {hash, salt} = encodePass(password);
+    fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${email}&hash=${hash}&salt=${salt}`);
   }
 
   return (
