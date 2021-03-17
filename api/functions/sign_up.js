@@ -25,6 +25,8 @@ exports.handler = function (event) {
       console.log('insert successful');
       console.log(results);
 
+      connection.end();
+
       resolve({
         statusCode: 200,
         headers: {
@@ -32,8 +34,6 @@ exports.handler = function (event) {
         }
       });
     });
-
-    connection.end();
 
   });
 }
