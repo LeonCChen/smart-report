@@ -17,10 +17,11 @@ exports.handler = async function (event, context) {
 
   var sql_command = `INSERT INTO USER (email, hash, salt) VALUES ( '${email}', '${hash}', '${salt}')`
   console.log(sql_command);
-  connection.query(sql_command, function (err, rows) {
+  connection.query(sql_command, function (err, results) {
     if (err)
       throw err;
-    console.dir(rows);
+    console.log('insert successful');
+    console.log(results);
 
   });
 
