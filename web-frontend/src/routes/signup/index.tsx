@@ -1,5 +1,6 @@
 import {Fragment, FunctionComponent, h} from 'preact';
 import {useState} from 'preact/hooks';
+import {route} from 'preact-router';
 import ProgressiveImage from '../../components/progressive-image';
 import {encodePass} from './crypto';
 import style from './style.css';
@@ -7,10 +8,18 @@ import style from './style.css';
 const SignUp: FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   const handleSubmit = (): void => {
     const {hash, salt} = encodePass(password);
-    fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}&salt=${encodeURIComponent(salt)}`);
+    fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}&salt=${encodeURIComponent(salt)}`)
+      .then((response) => {
+        if (response.ok) {
+          route('/signup/confirm');
+        } else {
+          setSubmitFailed(true);
+        }
+      });
   }
 
   return (
@@ -24,6 +33,10 @@ const SignUp: FunctionComponent = () => {
         <h2 class={style.heading}>Sign Up</h2>
         <h4 class={style.subheading}>Start getting news today</h4>
         <div class={style.form}>
+          {submitFailed
+            ? <p class={style.error}>Something went wrong singing up.</p>
+            : ''
+          }
           <div class={style.field}>
             <label for="email">Email</label>
             <input type="email" name="email" value={email} onInput={(event): void => {
@@ -35,8 +48,8 @@ const SignUp: FunctionComponent = () => {
             <input type="password" name="password" value={password} onInput={(event): void => {
               setPassword((event.target as HTMLInputElement).value);
             }} />
-            <button type="button" class={style.submitBtn} onClick={handleSubmit}>Sign Up</button>
           </div>
+          <button type="button" class={style.submitBtn} onClick={handleSubmit}>Sign Up</button>
         </div>
       </div>
     </Fragment>
