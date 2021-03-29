@@ -8,7 +8,7 @@ exports.hardler = async function (event) {
 	hash = decodeURIComponent(hash);
 	var sql_check_user = `SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}';`
 
-	const conn = mariadb.Createconnection({
+	const conn = await mariadb.Createconnection({
 		host: process.env.HOST, 
 		user: process.env.USER, 
 		password: process.env.PASSWORD, 
@@ -22,25 +22,22 @@ exports.hardler = async function (event) {
 			console.log(rows[0])
 			
 			// If does not exist
-			if (rows[0]) {
+			if ( ! ( rows[0] ) ) {
 				return {
 					statusCode: 403,
 					header: {
-						'The Item Does Not Exist': '*'	
+						'Access-Control-Allow-Origin': '*'	
 					}
 				};
 			}
-
 	} catch {
 		// Error
 		return {
 			statusCode: 401,
 			headers: {
-				'OPS SOMETHING WENT WRONG!': '*'
+				'Access-Control-Allow-Origin': '*'
 			}
-
 		};	
-
 	}
 	// Converts token in hex
 	const buff = randomBytes.(32);
@@ -49,7 +46,6 @@ exports.hardler = async function (event) {
 	// SQL COMMAND TO INSERT
 	var sql_insert_token = `INSERT into TOKEN (TOKEN.token, TOKEN.user_id) VALUES ( '${token}', ( SELECT USER.user_id from USER WHERE email='${email}' AND hash='${hash}' ) );`
 		
-
 	try {
 		await conn.query(sql_get_token)
 		// Inserts the New token in to the database
@@ -63,7 +59,7 @@ exports.hardler = async function (event) {
 		return {
 			statusCode: 401,
 			header: {
-				'OOPS SOMETHING WENT WRONG': '*'
+				'Access-Control-Allow-Origin': '*'
 			}
 		};
 	}
@@ -72,7 +68,7 @@ exports.hardler = async function (event) {
 	return {
 		statusCode: 200,
 		headers: {
-			'Access-Control-Allow_Origin': '*'
+			'Access-Control-Allow-Origin': '*'
 		}
 	};
 };

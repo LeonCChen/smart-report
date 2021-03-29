@@ -1,32 +1,40 @@
 const mariadb = require('mariadb');
 
 exports.handler = async function (event) {
+
 	var {email} = event.queryStringParameters;
 	email = decodeURIComponent(email);
 	var sql_command = `SELECT salt FROM USER WHERE email='${email}';`
 	
-	await mariadb.createConnection({
+	const conn = await mariadb.createConnection({
 		host: process.env.HOST,
-    	user: process.env.USER,
-    	password: process.env.PASSWORD,
-    	database: process.env.DATABASE
-	}).then(connection => {
-		connection.query(sql_command).then(rows => {
-			console.log(rows[0]);
-			console.log("INSERT SUCCESSFUL");
-			return { rows[0].salt } ;
-		}).catch(error => {
-			console.log(err);
-
-		});
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 	});
 
-	return {
-		statusCode: 200,
-		headers: {
-			'Access-Control_Allow_Origin': '*'
-		}
-	};
+	try {
+		const rows = await conn.query(sql_command);
+
+		console.log('GET SALT SUCCESS');
+		console.log(rows[0]);
+
+		// Returns the salt
+		return { 
+			body: rows[0].salt, //{salt: 'the actual salt'}
+			statusCode: 200,
+			headers: {
+				'Access-Control-Allow-Orgin': '*'
+			}
+		};
+
+	} catch {
+		// Error 
+		return {
+			statusCode: 401,
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			}
+		};
+	}
 };
-
-
