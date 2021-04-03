@@ -40,7 +40,7 @@ exports.hardler = async function (event) {
 		};	
 	}
 	// Converts token in hex
-	const buff = randomBytes.(32);
+	const buff = randomBytes(32);
 	const token = buff.toString('hex');
 		
 	// SQL COMMAND TO INSERT
