@@ -1,6 +1,6 @@
 var mariadb = require('mariadb');
 const verifyCode = Math.floor(100000 + Math.random() * 900000);
-const mailchimp = require("@mailchimp/mailchimp_transactional")("OjRwaA6XZHcJkWeQQiucuA");
+const mailchimp = require("@mailchimp/mailchimp_transactional")(process.env.MAILCHIMP);
 
 exports.handler = async function (event) {
   var {email, hash, salt} = event.queryStringParameters;
