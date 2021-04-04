@@ -17,6 +17,28 @@ exports.handler = async function (event) {
   }).then(connection => {
     connection.query(sql_command).then(() => {
       console.log('insert successful');
+
+      const welcomeEmail = async () => {
+        const response = await mailchimp.messages.send({ message: {
+            to: [
+              {
+                  email: email,
+                  type: "to"
+              }
+            ],
+            from_email: "thesmartreport@breakingmybrain.com",
+            text: "Welcome to The Smart Report!\n\nHere is your Verification Code: " + verifycode + "\n\nWelcome aboard!\n  - The Smart Report Team",
+            
+            subject: "The Smart Report Email",
+            from_name: "The Smart Report Team"
+                  
+      
+        } });
+        console.log(response);
+      };  
+      
+      welcomeEmail();
+
     }).catch(err => {
       console.log(err);
     });
@@ -30,26 +52,6 @@ exports.handler = async function (event) {
   };
 };
 
-const welcomeEmail = async () => {
-  const response = await mailchimp.messages.send({ message: {
-      to: [
-        {
-            email: email,
-            type: "to"
-        }
-      ],
-      from_email: "thesmartreport@breakingmybrain.com",
-      text: "Welcome to The Smart Report!\n\nHere is your Verification Code: " + verifycode + "\n\nWelcome aboard!\n  - The Smart Report Team",
-      
-      subject: "The Smart Report Email",
-      from_name: "The Smart Report Team"
-            
-
-  } });
-  console.log(response);
-};  
-
-welcomeEmail();
 
 
 
