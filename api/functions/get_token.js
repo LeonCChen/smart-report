@@ -8,7 +8,7 @@ exports.handler = async function (event) {
   hash = decodeURIComponent(hash);
   var sql_check_user = `SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}';`
 
-  const conn = await mariadb.Createconnection({
+  const conn = await mariadb.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
