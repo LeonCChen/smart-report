@@ -1,4 +1,6 @@
 var mariadb = require('mariadb');
+const verifyCode = Math.floor(100000 + Math.random() * 900000);
+const mailchimp = require("@mailchimp/mailchimp_transactional")("OjRwaA6XZHcJkWeQQiucuA");
 
 exports.handler = async function (event) {
   var {email, hash, salt} = event.queryStringParameters;
@@ -20,6 +22,29 @@ exports.handler = async function (event) {
     });
 
   });
+
+  const welcomeEmail = async () => {
+    const response = await mailchimpClient.messages.send({ message: {
+        to: [
+          {
+              email: email,
+              type: "to"
+          }
+        ],
+        from_email: "thesmartreport@breakingmybrain.com",
+        text: "Welcome to The Smart Report!\n\nHere is your Verification Code: " + verifycode + "\n\nWelcome aboard!\n  - The Smart Report Team",
+        
+        subject: "The Smart Report Email",
+        from_name: "The Smart Report Team"
+              
+  
+    } });
+    console.log(response);
+  };  
+  
+  welcomeEmail();
+
+  
   return {
     statusCode: 200,
     headers: {
