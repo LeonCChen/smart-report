@@ -28,12 +28,17 @@ const Home: FunctionalComponent = () => {
           <button
             class={`${style.button} ${style.signUp}`}
             onClick={(): void => {
-              route('/signup')
+              route('/signup');
             }}
           >
             Sign Up
         </button>
-          <button class={`${style.button} ${style.logIn}`}>
+          <button
+            class={`${style.button} ${style.logIn}`}
+            onClick={(): void => {
+              route('/login');
+            }}
+          >
             Log In
         </button>
         </div>
