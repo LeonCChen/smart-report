@@ -1,0 +1,138 @@
+.backgroundImg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: 0 0;
+}
+
+.sources {
+  position: relative;
+  top: 205px;
+  min-height: calc(100vh - 205px);
+  font-family: ui-sans-serif, system-ui, -apple-system,
+  BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: hsl(210, 36%, 96%);
+  color: hsl(209, 61%, 16%);
+}
+
+.heading {
+  font-size: 36px;
+  font-family: ui-sans-serif, system-ui, -apple-system,
+  BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  text-align: center;
+  color: hsl(209, 61%, 16%);
+  width: 210px;
+  position: relative;
+  top: calc(205px / 2);;
+  margin: 0 auto;
+}
+
+.iconEdit {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: calc((68px - 30px) / 2);
+  right: 90px;
+  cursor: pointer;
+}
+
+.iconEdit .primary {
+  fill: hsl(210, 22%, 49%);
+}
+
+.iconEdit .secondary {
+  fill: hsl(210, 22%, 49%);
+}
+
+.iconClose {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: calc((68px - 30px) / 2);
+  right: 30px;
+  cursor: pointer;
+}
+
+.iconClose .primary {
+  fill: hsl(210, 22%, 49%);
+}
+
+.iconCheck {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: calc((68px - 30px) / 2);
+  right: 30px;
+  cursor: pointer;
+}
+
+.iconCheck .primary {
+  fill: hsl(210, 22%, 49%);
+}
+
+.source:first-of-type {
+  border-top: 3px solid #9FB3C8;
+}
+
+.source {
+  border-bottom: 3px solid #9FB3C8;
+  height: 68px;
+  position: relative;
+}
+
+.source p {
+  font-size: 24px;
+  margin: 0;
+  position: relative;
+  top: 17px;
+  left: 14px;
+  max-width: 279px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source input {
+  background: hsl(210, 31%, 80%);
+  width: calc(100% - 104px);
+  height: 40px;
+  border-radius: 5px;
+  border-width: 0;
+  margin-left: 14px;
+  margin-top: 12px;
+  padding: 0 10px;
+  font-size: 18px;
+}
+
+.addSource {
+  cursor: pointer;
+  border-bottom: 3px solid #9FB3C8;
+  height: 68px;
+  position: relative;
+}
+
+.addSource span {
+  font-size: 24px;
+  position: relative;
+  top: 17px;
+  left: calc((100% - 265px) / 2);
+}
+
+.iconAdd {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: calc((100% - 265px) / 2);
+  top: calc((68px - 30px) / 2);
+}
+
+.iconAdd .primary {
+  fill: hsl(210, 22%, 49%);
+}
