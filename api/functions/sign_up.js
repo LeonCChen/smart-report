@@ -21,8 +21,6 @@ exports.handler = async function (event) {
       console.log(err);
     });
     
-
-
     const welcomeEmail = async () => {
       const response = await mailchimpClient.messages.send({ message: {
           to: [
@@ -42,8 +40,6 @@ exports.handler = async function (event) {
         
     welcomeEmail();
 
-
-
   });
   return {
     statusCode: 200,
@@ -52,13 +48,5 @@ exports.handler = async function (event) {
     }
   };
 };
-
-
-
-
-
-
-
-
 
 
