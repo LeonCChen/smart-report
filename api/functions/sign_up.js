@@ -1,6 +1,6 @@
 var mariadb = require('mariadb');
 const verifyCode = Math.floor(100000 + Math.random() * 900000);
-const mailchimp = require("@mailchimp/mailchimp_transactional")(process.env.MAILCHIMP);
+const mailchimpClient = require("@mailchimp/mailchimp_transactional")(process.env.MAILCHIMP);
 
 exports.handler = async function (event) {
   var {email, hash, salt} = event.queryStringParameters;
@@ -19,10 +19,10 @@ exports.handler = async function (event) {
       console.log('insert successful');
 
       const welcomeEmail = async () => {
-        const response = await mailchimp.messages.send({ message: {
+        const response = await mailchimpClient.messages.send({ message: {
             to: [
               {
-                  email: "rosaz@wit.edu",
+                  email: email,
                   type: "to"
               }
             ],
