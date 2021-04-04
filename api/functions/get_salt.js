@@ -9,8 +9,7 @@ exports.handler = async function (event) {
 	const conn = await mariadb.createConnection({
 		host: process.env.HOST,
     user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    password: process.env.PASSWORD, database: process.env.DATABASE
 	});
 
 	try {
@@ -24,7 +23,7 @@ exports.handler = async function (event) {
 			body: rows[0].salt, //{salt: 'the actual salt'}
 			statusCode: 200,
 			headers: {
-				'Access-Control-Allow-Orgin': '*'
+				'Access-Control-Allow-Origin': '*'
 			}
 		};
 
