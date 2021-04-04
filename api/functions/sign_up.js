@@ -22,14 +22,14 @@ exports.handler = async function (event) {
         const response = await mailchimp.messages.send({ message: {
             to: [
               {
-                  email: email,
+                  email: "rosaz@wit.edu",
                   type: "to"
               }
             ],
             from_email: "thesmartreport@breakingmybrain.com",
             text: "Welcome to The Smart Report!\n\nHere is your Verification Code: " + verifycode + "\n\nWelcome aboard!\n  - The Smart Report Team",
             
-            subject: "The Smart Report Email",
+            subject: "Welcome to The Smart Report!",
             from_name: "The Smart Report Team"
                   
       
@@ -51,6 +51,7 @@ exports.handler = async function (event) {
     }
   };
 };
+
 
 
 
