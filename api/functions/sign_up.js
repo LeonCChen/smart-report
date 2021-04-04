@@ -34,7 +34,7 @@ exports.handler = async function (event) {
                   
       
         } });
-        //console.log(response);
+        console.log(response);
       };  
       
       welcomeEmail();
