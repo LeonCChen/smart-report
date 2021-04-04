@@ -31,7 +31,7 @@ exports.handler = async function (event) {
 };
 
 const welcomeEmail = async () => {
-  const response = await mailchimpClient.messages.send({ message: {
+  const response = await mailchimp.messages.send({ message: {
       to: [
         {
             email: email,
@@ -50,5 +50,7 @@ const welcomeEmail = async () => {
 };  
 
 welcomeEmail();
+
+
 
 
