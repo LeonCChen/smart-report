@@ -13,7 +13,7 @@ exports.handler = async function (event) {
 
 	// Converts tex to a token
   const buff = randomBytes(32);
-  const token = buff.toString('hex');
+  const token = buff.toString('base64');
 
 	// Command For Inserting the TOKEN
 	var sql_insert_token = `INSERT into TOKEN (TOKEN.token, TOKEN.user_id) VALUES ( '${token}', ( SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}' ) ) ;`
