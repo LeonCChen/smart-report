@@ -9,16 +9,17 @@ exports.handler = async function (event) {
   hash = decodeURIComponent(hash);
 
 	// Uses the given email and has to get a TOKEN.user_id
-  var sql_check_user = `SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}';`
+  var sql_check_user = `SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}' ;`
 
 	// Converts tex to a token
   const buff = randomBytes(32);
   const token = buff.toString('hex');
 
 	// Command For Inserting the TOKEN
-	var sql_insert_token = `INSERT into TOKEN (TOKEN.token, TOKEN.user_id) VALUES ( '${token}', ( SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}' ) );`
+	var sql_insert_token = `INSERT into TOKEN (TOKEN.token, TOKEN.user_id) VALUES ( '${token}', ( SELECT USER.user_id FROM USER WHERE email='${email}' AND hash='${hash}' ) ) ;`
 	
 	console.log("Hello");
+
 	const conn = await mariadb.createConnection({
 		host: process.env.HOST,
 		user: process.env.USER,
@@ -27,6 +28,7 @@ exports.handler = async function (event) {
 	});
 
   try {		
+
     const rows = await conn.query(sql_check_user);
     // Checks if the User is in the Database
     console.log('SQL COMMAND 1 WORKED!!!');
@@ -65,6 +67,7 @@ exports.handler = async function (event) {
 	// Success
 	return {
 		statusCode: 200,
+    body: token,
 		headers: {
 			'Access-Control-Allow-Origin': '*'
 		}
