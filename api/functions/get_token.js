@@ -20,14 +20,13 @@ exports.handler = async function (event) {
 	
 	console.log("Hello");
 	const conn = await mariadb.createConnection({
-		host: '165.227.217.87',
-		user: 'dillon',
-		password: 'wordword22',
-		database: 'the_smart_report'
+		host: process.env.HOST,
+		user: process.env.USER,
+		password: process.env.PASSWORD,
+		database: process.env.DATABASE
 	});
 
-  try {
-		
+  try {		
     const rows = await conn.query(sql_check_user);
     // Checks if the User is in the Database
     console.log('SQL COMMAND 1 WORKED!!!');
