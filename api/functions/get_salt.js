@@ -27,6 +27,8 @@ exports.handler = async function (event) {
 			}
 		};
 
+  conn.end();
+
 	} catch {
 		// Error 
 		return {
