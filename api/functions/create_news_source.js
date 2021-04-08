@@ -65,6 +65,7 @@ exports.handler =  async function (event) {
   console.log("Hello");
   return {
     statusCode: 200,
+    body: "",
     headers: {
       'Access-Control-Allow-Orgin': '*'
     }
