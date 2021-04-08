@@ -62,6 +62,7 @@ exports.handler =  async function (event) {
     };    
   }
 
+  console.log("Hello");
   return {
     statusCode: 200,
     headers: {
