@@ -1,6 +1,6 @@
 const mariadb = require('mariadb');
 
-export.handler =  async function (event) {
+exports.handler =  async function (event) {
   
   // Unpacking and Decoding 
   var {email, newsSource, token} = event.queryStringParameters;
