@@ -13,12 +13,15 @@ exports.handler =  async function (event) {
   var sql_get_user_id2 = `SELECT user_id FROM TOKEN WHERE token='${token}' ;` ;
   
   // SQL Command to INSERT INTO NEWS TABLE
-  var sql_insert_news = `INSERT INTO NEWS (rss_feed) VALUES ('${newsSource}') ;`
+  var sql_insert_news = `INSERT INTO NEWS (rss_feed) VALUES ('${newsSource}') ;`;
 
   // SQL COMMAND TO INSET INTO USER_NEWS
-  var sql_user_news = `INSERT into USER_NEWS (user_id, news_id) VALUES ( (SELECT user_id FROM USER WHERE email='${email}'), (SELECT news_id FROM NEWS WHERE rss_feed='${newsSource}') );`
+  var sql_user_news = `INSERT into USER_NEWS (user_id, news_id) VALUES ( (SELECT user_id FROM USER WHERE email='${email}'), (SELECT news_id FROM NEWS WHERE rss_feed='${newsSource}') );`;
 
-   // Creating the Connection with the DB  
+  // Get the NEWS.news_id
+  var sql_news_id = `SELECT news_id FROM NEWS WHERE rss_feed='${newsSource}' ;`;
+
+  // Creating the Connection with the DB  
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
@@ -27,7 +30,7 @@ exports.handler =  async function (event) {
   });
    
   // Auth, and Inserting the USER and NEWS
-  // try { 
+  try { 
     
     // Auth. the User to make sure theyare who they say they are
     const rows1 = await conn.query(sql_get_user_id1);
@@ -49,10 +52,12 @@ exports.handler =  async function (event) {
     // Linking USER with NEWS
     const rows4 = await conn.query(sql_user_news);   
 
+    // Get news_id
+    const my_news_id = await conn.query(sql_news_id);
+
     // Ends the Connection to DB
     conn.end();
 
-  /*
   } catch {
     // Returns An Error if Failure
     return {
@@ -62,12 +67,10 @@ exports.handler =  async function (event) {
       }
     };    
   }
-  */
 
-  console.log("Hello");
   return {
     statusCode: 200,
-    body: "",
+    body: my_news_id,
     headers: {
       'Access-Control-Allow-Orgin': '*'
     }
