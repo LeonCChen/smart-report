@@ -53,7 +53,7 @@ exports.handler =  async function (event) {
     const rows4 = await conn.query(sql_user_news);   
 
     // Get news_id
-    const my_news_id = await conn.query(sql_news_id);
+    const sql_news_id = await conn.query(sql_news_id);
 
     // Ends the Connection to DB
     conn.end();
