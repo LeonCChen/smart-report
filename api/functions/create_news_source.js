@@ -30,7 +30,7 @@ exports.handler =  async function (event) {
   });
    
   // Auth, and Inserting the USER and NEWS
-  try { 
+//  try { 
     
     // Auth. the User to make sure theyare who they say they are
     const rows1 = await conn.query(sql_get_user_id1);
@@ -57,7 +57,7 @@ exports.handler =  async function (event) {
 
     // Ends the Connection to DB
     conn.end();
-
+/*
   } catch {
     // Returns An Error if Failure
     return {
@@ -67,7 +67,7 @@ exports.handler =  async function (event) {
       }
     };    
   }
-
+*/
   return {
     statusCode: 200,
     body: the_news_id,
