@@ -70,7 +70,7 @@ exports.handler =  async function (event) {
 */
   return {
     statusCode: 200,
-    body: news_id,
+    body: news_id[0],
     headers: {
       'Access-Control-Allow-Orgin': '*'
     }
