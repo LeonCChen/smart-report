@@ -31,6 +31,7 @@ exports.handler = async function (event) {
           from_name: "The Smart Report Team"
       } });
         console.log(welcomeEmail);
+        welcomeEmail();
         });  
       });
     }).catch(err => {
