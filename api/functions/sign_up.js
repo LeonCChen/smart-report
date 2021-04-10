@@ -16,8 +16,8 @@ exports.handler = async function (event) {
     database: process.env.DATABASE
   }).then(connection => {
     connection.query(sql_command).then(() => {
-      console.log('insert successful').then(() => {
-        const welcomeEmail  = mailchimpClient.messages.send({ message: {
+      console.log('insert successful').then(welcomeEmail => {
+        mailchimpClient.messages.send({ message: {
           to: [
             {
                 email: email,
@@ -30,20 +30,28 @@ exports.handler = async function (event) {
           subject: "Welcome to The Smart Report!",
           from_name: "The Smart Report Team"
       } });
-      console.log(welcomeEmail);
-    });
-      welcomeEmail();
-      })
+        console.log(welcomeEmail);
+        });  
+      });
     }).catch(err => {
       console.log(err);
     });
+    
+    
+
+
+  };
   return {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*'
     }
   };
-};
+
+
+
+
+
 
 
 
