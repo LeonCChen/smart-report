@@ -16,13 +16,8 @@ exports.handler = async function (event) {
     database: process.env.DATABASE
   }).then(connection => {
     connection.query(sql_command).then(() => {
-      console.log('insert successful');
-    }).catch(err => {
-      console.log(err);
-    });
-    
-    const welcomeEmail = async () => {
-      const response = await mailchimpClient.messages.send({ message: {
+      console.log('insert successful').then(() => {
+        const welcomeEmail  = mailchimpClient.messages.send({ message: {
           to: [
             {
                 email: email,
@@ -35,12 +30,12 @@ exports.handler = async function (event) {
           subject: "Welcome to The Smart Report!",
           from_name: "The Smart Report Team"
       } });
-      console.log(response);
-    };  
-        
-    welcomeEmail();
-
-  });
+      console.log(welcomeEmail);
+    });
+      })
+    }).catch(err => {
+      console.log(err);
+    });
   return {
     statusCode: 200,
     headers: {
@@ -48,5 +43,6 @@ exports.handler = async function (event) {
     }
   };
 };
+
 
 
