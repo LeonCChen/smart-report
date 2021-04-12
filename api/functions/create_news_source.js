@@ -35,9 +35,9 @@ exports.handler =  async function (event) {
     // Auth. the User to make sure theyare who they say they are
     const rows1 = await conn.query(sql_get_user_id1);
     const rows2 = await conn.query(sql_get_user_id2);
-    
+   
     // Returns an Error if the user can not AUTH
-    if( ! rows1 || ! rows2 || ! ( rows1[0].user_id === rows2[0].user_id ) ){
+    if( ! rows1 || ! rows2 || ! ( rows1[0] == rows2[0] ) ){
       return {
         statusCode: 403,
         headers: {
