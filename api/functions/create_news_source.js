@@ -53,14 +53,14 @@ exports.handler =  async function (event) {
 
     // Get news_id
     const newsID = await conn.query(sql_news_id);
-    var the_news_id = newsID[0].news_id;
+    var the_news_id = newsID[0].news_id.toString();
 
     // Ends the Connection to DB
     conn.end();
 
     return {
       statusCode:200,
-      body: the_news_id[0].news_id,
+      body: the_news_id,
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
