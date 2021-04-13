@@ -34,6 +34,8 @@ exports.handler = async function (event) {
     const code_string = verifyCode.toString();
 
     // Sends the email the to user that signed up
+
+  const welcomeEmail = async () => {
     const response = await mailchimpClient.messages.send({ message: {
       to: [
         {
@@ -48,6 +50,9 @@ exports.handler = async function (event) {
         from_name: "The Smart Report Team"
       } 
     });
+
+    console.log(response);
+  };
         
     // Returns Success If it works
     return {
