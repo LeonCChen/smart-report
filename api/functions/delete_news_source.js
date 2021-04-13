@@ -3,7 +3,7 @@ const mariadb = require('mariadb');
 exports.handler = async function (event) {
 
   // Unpacking and Decoding 
-  var {email, newsSource, token} = event.queryStringParameters;
+  var {email, newsSource, token, newsID} = event.queryStringParameters;
   email = decodeURIComponent(email);
   newsSource = decodeURIComponent(newsSource);
   token = decodeURIComponent(token);
