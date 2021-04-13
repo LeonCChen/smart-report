@@ -34,7 +34,7 @@ const SignUp: FunctionComponent = () => {
         <h4 class={style.subheading}>Start getting news today</h4>
         <div class={style.form}>
           {submitFailed
-            ? <p class={style.error}>Something went wrong singing up.</p>
+            ? <p class={style.error}>Something went wrong signing up.</p>
             : ''
           }
           <div class={style.field}>

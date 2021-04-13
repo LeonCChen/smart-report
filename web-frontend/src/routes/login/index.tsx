@@ -1,32 +1,36 @@
 import {Fragment, FunctionComponent, h} from 'preact';
-import {useState} from 'preact/hooks';
+import {useContext, useState} from 'preact/hooks';
+import {route} from 'preact-router';
 import ProgressiveImage from '../../components/progressive-image';
 import {encodePass} from '../../util/crypto';
+import Store from '../../store';
 import style from './style.css';
 
 const Login: FunctionComponent = () => {
-  const [email, setEmail] = useState('');
+  const [localEmail, setLocalEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitFailed, setSubmitFailed] = useState(false);
+  const {setEmail, setToken} = useContext(Store);
 
   const handleSubmit = async (): Promise<void> => {
-    const saltResponse = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/get_salt?email=${encodeURIComponent(email)}`)
+    const saltResponse = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/get_salt?email=${encodeURIComponent(localEmail)}`)
     if (!saltResponse.ok) {
       setSubmitFailed(true);
       return;
     }
 
     const salt = await saltResponse.text();
-    console.log('salt:', salt);
     const {hash} = encodePass(password, salt);
-    console.log('hash:', hash);
-    const loginResponse = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/get_token?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}`);
+    const loginResponse = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/get_token?email=${encodeURIComponent(localEmail)}&hash=${encodeURIComponent(hash)}`);
     if (!loginResponse.ok) {
       setSubmitFailed(true);
     }
 
     const token = await loginResponse.text();
-    console.log('token:', token);
+    setToken(token);
+    setEmail(localEmail);
+
+    route('/news-sources');
   }
 
   return (
@@ -46,8 +50,8 @@ const Login: FunctionComponent = () => {
           }
           <div class={style.field}>
             <label for="email">Email</label>
-            <input type="email" name="email" value={email} onInput={(event): void => {
-              setEmail((event.target as HTMLInputElement).value);
+            <input type="email" name="email" value={localEmail} onInput={(event): void => {
+              setLocalEmail((event.target as HTMLInputElement).value);
             }} />
           </div>
           <div class={style.field}>
@@ -56,7 +60,9 @@ const Login: FunctionComponent = () => {
               setPassword((event.target as HTMLInputElement).value);
             }} />
           </div>
-          <button type="button" class={style.submitBtn} onClick={handleSubmit}>Log In</button>
+          <button type="button" class={style.submitBtn} onClick={handleSubmit}>
+            Log In
+          </button>
         </div>
       </div>
     </Fragment>

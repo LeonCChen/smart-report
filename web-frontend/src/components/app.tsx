@@ -1,5 +1,7 @@
 import {FunctionalComponent, h} from 'preact';
+import {useState} from 'preact/hooks';
 import {Route, Router} from 'preact-router';
+import Store from '../store';
 
 import Home from '../routes/home';
 import SignUp from '../routes/signup';
@@ -9,17 +11,22 @@ import NewsSources from '../routes/newssources';
 import NotFoundPage from '../routes/notfound';
 
 const App: FunctionalComponent = () => {
+  const [token, setToken] = useState('');
+  const [email, setEmail] = useState('');
+
   return (
-    <div id="app">
-      <Router>
-        <Route path="/" component={Home} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/signup/confirm" component={EmailCode} />
-        <Route path="/login" component={Login} />
-        <Route path="/news-sources" component={NewsSources} />
-        <NotFoundPage default />
-      </Router>
-    </div>
+    <Store.Provider value={{token, setToken, email, setEmail}}>
+      <div id="app">
+        <Router>
+          <Route path="/" component={Home} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/signup/confirm" component={EmailCode} />
+          <Route path="/login" component={Login} />
+          <Route path="/news-sources" component={NewsSources} />
+          <NotFoundPage default />
+        </Router>
+      </div>
+    </Store.Provider>
   );
 };
 
