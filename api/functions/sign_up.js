@@ -15,7 +15,7 @@ exports.handler = async function (event) {
   var sql_insert_user = `INSERT INTO USER (email, hash, salt) VALUES ( '${email}', '${hash}', '${salt}')`
 
   // Creating the Connection with the Database
-  await mariadb.createConnection({
+  const conn = await mariadb.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
@@ -35,7 +35,6 @@ exports.handler = async function (event) {
 
     // Sends the email the to user that signed up
 
-  const welcomeEmail = async () => {
     const response = await mailchimpClient.messages.send({ message: {
       to: [
         {
@@ -51,9 +50,6 @@ exports.handler = async function (event) {
       } 
     });
 
-    console.log(response);
-  };
-        
     // Returns Success If it works
     return {
       statusCode: 200,
