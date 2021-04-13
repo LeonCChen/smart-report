@@ -22,36 +22,49 @@ exports.handler = async function (event) {
     database: process.env.DATABASE
   });
 
-  // SQL Command, inserts the user into the USER table in DB
-  const rows1 = await conn.query(sql_insert_user);  
+  try {
+
+    // SQL Command, inserts the user into the USER table in DB
+    const rows1 = await conn.query(sql_insert_user);  
  
-  // Ends the Connection to the Db
-  conn.end();
+    // Ends the Connection to the Db
+    conn.end();
 
-  // Converting the code into a string
-  const code_string = verifyCode.toString();
+    // Converting the code into a string
+    const code_string = verifyCode.toString();
 
-  // Sends the email the to user that signed up
-  const response = await mailchimpClient.messages.send({ message: {
-    to: [
-      {
-        email: email,
-        type: "to"
-      }
-    ],
-      from_email: "thesmartreport@breakingmybrain.com",
-      text: "Welcome to The Smart Report!\n\nHere is your Verification Code: " + verifyCode + "\n\nWelcome aboard!\n  - The Smart Report Team",
+    // Sends the email the to user that signed up
+    const response = await mailchimpClient.messages.send({ message: {
+      to: [
+        {
+          email: email,
+          type: "to"
+        }
+      ],
+        from_email: "thesmartreport@breakingmybrain.com",
+        text: "Welcome to The Smart Report!\n\nHere is your Verification Code: " + verifyCode + "\n\nWelcome aboard!\n  - The Smart Report Team",
               
-      subject: "Welcome to The Smart Report!",
-      from_name: "The Smart Report Team"
-    } 
-  });
+        subject: "Welcome to The Smart Report!",
+        from_name: "The Smart Report Team"
+      } 
+    });
         
-  return {
-    statusCode: 200,
-    body: code_string,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  };
+    // Returns Success If it works
+    return {
+      statusCode: 200,
+      body: code_string,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
+  } catch {
+    // Returns an Error
+    return {
+      statusCode: 401,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
+  }  
 };
+
