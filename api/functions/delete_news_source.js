@@ -14,7 +14,7 @@ exports.handler = async function (event) {
   var sql_get_user_id2 = `SELECT user_id FROM TOKEN WHERE token='${token}' ;` ;
 
   // Command the remove the news from USER_NEWS table
-  var sql_remove_news = `DELETE FROM USER_NEWS WHERE USER_NEWS.user_id=( SELECT user_id FROM USER WHERE email ='${email}' ) AND news_id=${newsID} ) ;`;
+  var sql_remove_news = `DELETE FROM USER_NEWS WHERE USER_NEWS.user_id=( SELECT user_id FROM USER WHERE email ='${email}' ) AND news_id=${newsID} ;`;
 
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
