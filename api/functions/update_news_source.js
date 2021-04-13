@@ -13,8 +13,18 @@ exports.handler = async function (event) {
   var sql_get_user_id1 = `SELECT user_id FROM USER WHERE email='${email}' ;` ;
   var sql_get_user_id2 = `SELECT user_id FROM TOKEN WHERE token='${token}' ;` ;
 
-  // SQL Command to update the news source
-  var sql_update_news = `REPLACE INTO NEWS (news_id, rss_feed) VALUES (${newsID}, '${newsSource}');` ; 
+  // Create SQL Command
+  // SQL Command to INSERT INTO NEWS TABLE
+  var sql_insert_news = `INSERT INTO NEWS (rss_feed) VALUES ('${newsSource}') ;`;
+
+  // SQL COMMAND TO INSET INTO USER_NEWS
+  var sql_user_news = `INSERT into USER_NEWS (user_id, news_id) VALUES ( (SELECT user_id FROM USER WHERE email='${email}'), (SELECT news_id FROM NEWS WHERE rss_feed='${newsSource}') );`;
+
+  // Get the NEWS.news_id
+  var sql_news_id = `SELECT news_id FROM NEWS WHERE rss_feed='${newsSource}' ;`;  
+
+  // Delete SQL Command
+  var sql_remove_news = `DELETE FROM USER_NEWS WHERE USER_NEWS.user_id=( SELECT user_id FROM USER WHERE email ='${email}' ) AND news_id=${newsID} ;`;
 
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
@@ -38,8 +48,17 @@ exports.handler = async function (event) {
       };
     }
 
-    // Query to update the news
-    const rows3 = await conn.query(sql_update_news);
+    // Removing the news source
+    const rows = await conn.query(sql_remove_news);
+
+    // Insert NEWS source
+    const rows3 = await conn.query(sql_insert_news);
+    // Linking USER with NEWS
+    const rows4 = await conn.query(sql_user_news);   
+
+    // Get news_id
+    const newsID = await conn.query(sql_news_id);
+    var the_news_id = newsID[0].news_id.toString();
 
     // Closes the connection
     conn.end();
@@ -47,6 +66,7 @@ exports.handler = async function (event) {
     // Returns No Error if Successful
     return {
       statusCode: 200,
+      body: the_news_id,
       headers: {
         'Access-Control-Allow-Origin': '*'            
       }
