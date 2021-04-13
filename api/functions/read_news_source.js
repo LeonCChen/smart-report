@@ -14,6 +14,7 @@ exports.handler = async function (event) {
   // SQL Command to retrive the USER NEWS source.
   var sql_read_news = `SELECT * FROM NEWS WHERE news_id IN (SELECT news_id FROM USER_NEWS WHERE user_id=(SELECT user_id FROM USER WHERE email='${email}') ) ;`;
 
+  // Creates the connection to the Batabase
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
@@ -42,14 +43,14 @@ exports.handler = async function (event) {
     // console.log(rows.length);
     // console.log(rows.slice(0, rows.length));
 
+    // Cuts the array so only the news objects gets returned
     const my_news = rows.slice(0, rows.length);
 
     // Ends the Connection to the DB
     conn.end();
 
     return { 
-      body: my_news, //{salt: 'the actual salt'}
-      statusCode: 200,
+      body: JSON.stringify(my_news), //{salt: 'the actual salt'} 
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
