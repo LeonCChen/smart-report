@@ -48,7 +48,7 @@ exports.handler = async function (event) {
       };
     }
 
-    // Removing the news source
+    // Removing the old news source
     const rows = await conn.query(sql_remove_news);
 
     // Insert NEWS source
@@ -71,7 +71,8 @@ exports.handler = async function (event) {
         'Access-Control-Allow-Origin': '*'            
       }
     };
-  } catch {
+  } catch (error) {
+    console.log(error);
     // Returns error if true
     return {
       statusCode: 401,
