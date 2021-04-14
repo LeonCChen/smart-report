@@ -26,6 +26,9 @@ exports.handler = async function (event) {
   // Delete SQL Command
   var sql_remove_news = `DELETE FROM USER_NEWS WHERE USER_NEWS.user_id=( SELECT user_id FROM USER WHERE email ='${email}' ) AND news_id=${newsID} ;`;
 
+  // Check if rss_feed exits
+  var sql_rss_feed_check = `SELECT rss_feed FROM NEWS WHERE rss_feed='${newsSource}'` ; 
+
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
@@ -48,13 +51,27 @@ exports.handler = async function (event) {
       };
     }
 
-    // Removing the old news source
-    const rows = await conn.query(sql_remove_news);
 
-    // Insert NEWS source
-    const rows3 = await conn.query(sql_insert_news);
-    // Linking USER with NEWS
-    const rows4 = await conn.query(sql_user_news);   
+
+    const hold = conn.query(sql_rss_feed_check);
+    // If it does not exist
+    if(! hold) {
+
+      // Removing the old news source
+      const rows = await conn.query(sql_remove_news);
+
+      // Insert NEWS source
+      const rows3 = await conn.query(sql_insert_news);
+      // Linking USER with NEWS
+      const rows4 = await conn.query(sql_user_news);   
+  
+    // If it does exist
+    } else {
+      // Removing the old news source
+      const rows = await conn.query(sql_remove_news);
+       // Linking USER with NEWS
+      const rows4 = await conn.query(sql_user_news);
+    }
 
     // Get news_id
     const newsID = await conn.query(sql_news_id);
