@@ -55,7 +55,7 @@ exports.handler = async function (event) {
 
     const hold = await conn.query(sql_rss_feed_check);
     // If it does not exist
-    if(! hold) {
+    if (!(hold?.length === undefined || hold.length === 1)) {
 
       // Removing the old news source
       const rows = await conn.query(sql_remove_news);

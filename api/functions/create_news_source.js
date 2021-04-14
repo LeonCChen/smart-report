@@ -55,7 +55,7 @@ exports.handler =  async function (event) {
     const hold = await conn.query(sql_rss_feed_check);
     // If it does not exist
     console.log(hold);
-    if(! hold) {
+    if (!(hold?.length === undefined || hold.length === 1)) {
       console.log('Im In');
       // Insert NEWS source
       const rows3 = await conn.query(sql_insert_news);
