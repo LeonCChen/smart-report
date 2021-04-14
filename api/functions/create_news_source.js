@@ -66,7 +66,8 @@ exports.handler =  async function (event) {
       }
     };
 
-  } catch {
+  } catch (error) {
+    console.log(error);
     // Returns An Error if Failure
     return {
       statusCode: 401,
