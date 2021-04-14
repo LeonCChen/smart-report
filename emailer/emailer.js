@@ -23,8 +23,6 @@ async function asyncFunction() {
   // console.log(rows.slice(0, rows.length));
   // Takes the email out of the object
   const emails = rows.map(({ email }) => email);    
-  // console.log(emails);
-  // console.log('\n');
 
   /*
     2. For each user
@@ -33,76 +31,74 @@ async function asyncFunction() {
       3. Create and send an email which mixes a few of the news items from the user's feeds
   */
 
-  // SQL Command to retrive the USER NEWS source.
-  var sql_read_news = `SELECT rss_feed FROM NEWS WHERE news_id IN (SELECT news_id FROM USER_NEWS WHERE user_id=(SELECT user_id FROM USER WHERE email='chenl4@wit.edu') ) ;`;
+  for (user_email of emails) {
+  
+    // SQL Command to retrive the USER NEWS source.
+    var sql_read_news = `SELECT rss_feed FROM NEWS WHERE news_id IN (SELECT news_id FROM USER_NEWS WHERE user_id=(SELECT user_id FROM USER WHERE email='${user_email}') ) ;`;
 
-  // SQL Command to get the news from the database
-  const rows1 = await conn.query(sql_read_news);
-  // Takes the Rss_feed from the object and put it into an array
-  const news = rows1.map(({rss_feed}) => rss_feed); 
+    // SQL Command to get the news from the database
+    const rows1 = await conn.query(sql_read_news);
+    // Takes the Rss_feed from the object and put it into an array
+    const news = rows1.map(({rss_feed}) => rss_feed); 
 
-  console.log()
-   
-  const my_items=[];
-  for(the_news_rss_feed of news){
-    // Temp
-    const temp=[];
+    const my_items=[];
+    for(the_news_rss_feed of news){
+      // Temp
+      const temp=[];
     
-    // Does the XML Parsing
-    var response = await fetch(the_news_rss_feed);
-    var feedparser = new FeedParser('uri');
+      // Does the XML Parsing
+      var response = await fetch(the_news_rss_feed);
+      var feedparser = new FeedParser('uri');
 
-    response.body.pipe(feedparser);
+      response.body.pipe(feedparser);
 
-    feedparser.on('readable', function () {
-      console.log(2);
-      // Reads the download as a strem parse and adds to an arrny
-      var stream = this;
-      var meta = this.meta;
-      var item;
-      console.log(2);
-      while (item = stream.read()) {
-        // console.log(item);
-        console.log(3);
-        temp.push(item);
-      }
-    });
-    await new Promise(resolve => feedparser.on('end', resolve));
-    my_items.push(...temp.slice(0,5));
-  }
+      feedparser.on('readable', function () {
+        // console.log(2);
+        // Reads the download as a strem parse and adds to an arrny
+        var stream = this;
+        var meta = this.meta;
+        var item;
+        // console.log(2);
+        while (item = stream.read()) {
+          // console.log(item);
+          // console.log(3);
+          temp.push(item);
+        }
+      });
+      await new Promise(resolve => feedparser.on('end', resolve));
+      my_items.push(...temp.slice(0,5));
+    }
 
-  // Shuffle array 
-  // Fisher-Yates array shuffling algorithm
-  for(let i = my_items.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * i)
-    const temp = my_items[i]
-    my_items[i] = my_items[j]
-    my_items[j] = temp
-  }
-    
-  // Gets the first 5 items from the array
-  const news_sources = my_items.slice(0, 5);
-  // console.log(news_sources.length);
+    // Shuffle array 
+    // Fisher-Yates array shuffling algorithm
+    for(let i = my_items.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * i)
+      const temp = my_items[i]
+      my_items[i] = my_items[j]
+      my_items[j] = temp
+    }
 
-  // Craft the body for the email
-  const emailBody = news_sources.reduce((acc, item) => (
-  acc + '\n' + item.title + '\n' + item.link + '\n'), '');
 
-  const email_response = await mailchimpClient.messages.send({ message: {
-    to: [
-      {
-        email: 'leonchen77@outlook.com',
-        type: "to"
-      }
-    ],
-      from_email: "thesmartreport@breakingmybrain.com",
-      text: "Here is your personalized newsletter\n" + emailBody + "\n\n\n Thanks, CUH",
-      subject: "Here is your personalized newsletter",
-      from_name: "The Smart Report Team"
-    }});
+    const news_sources = my_items.slice(0, 5);
+    // console.log(news_sources.length);
 
-  }
+    // Craft the body for the email
+    const emailBody = news_sources.reduce((acc, item) => (
+    acc + '\n' + item.title + '\n' + item.link + '\n'), '');
 
+    const email_response = await mailchimpClient.messages.send({ message: {
+      to: [
+        {
+          email: user_email,
+          type: "to"
+        }
+      ],
+        from_email: "thesmartreport@breakingmybrain.com",
+        text: "Here is your personalized newsletter\n" + emailBody + "\n\n\n Thanks \n\nFrom The Smart Report Team",
+        subject: "Here is your personalized newsletter",
+        from_name: "The Smart Report Team"
+      }});
+    }
 
   // Ends the Connection to the Database
   conn.end()
