@@ -21,6 +21,9 @@ exports.handler =  async function (event) {
   // Get the NEWS.news_id
   var sql_news_id = `SELECT news_id FROM NEWS WHERE rss_feed='${newsSource}' ;`;
 
+  // Check if rss_feed exits
+  var sql_rss_feed_check = `SELECT rss_feed FROM NEWS WHERE rss_feed='${newsSource}'` ; 
+
   // Creating the Connection with the DB  
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
@@ -31,7 +34,9 @@ exports.handler =  async function (event) {
    
   // Auth, and Inserting the USER and NEWS
   try { 
-    
+   
+    if
+ 
     // Auth. the User to make sure theyare who they say they are
     const rows1 = await conn.query(sql_get_user_id1);
     const rows2 = await conn.query(sql_get_user_id2);
@@ -49,10 +54,20 @@ exports.handler =  async function (event) {
       };
     }
 
-    // Insert NEWS source
-    const rows3 = await conn.query(sql_insert_news);
-    // Linking USER with NEWS
-    const rows4 = await conn.query(sql_user_news);   
+    const hold = conn.query(sql_rss_feed_check);
+    // If it does not exist
+    if(! hold) {
+
+      // Insert NEWS source
+      const rows3 = await conn.query(sql_insert_news);
+      // Linking USER with NEWS
+      const rows4 = await conn.query(sql_user_news);   
+  
+    // If it does exist
+    } else {
+      const rows4 = await conn.query(sql_user_news);
+    }
+
 
     // Get news_id
     const newsID = await conn.query(sql_news_id);
