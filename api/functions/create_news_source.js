@@ -35,8 +35,6 @@ exports.handler =  async function (event) {
   // Auth, and Inserting the USER and NEWS
   try { 
    
-    if
- 
     // Auth. the User to make sure theyare who they say they are
     const rows1 = await conn.query(sql_get_user_id1);
     const rows2 = await conn.query(sql_get_user_id2);
