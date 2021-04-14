@@ -53,7 +53,7 @@ exports.handler = async function (event) {
 
 
 
-    const hold = conn.query(sql_rss_feed_check);
+    const hold = await conn.query(sql_rss_feed_check);
     // If it does not exist
     if(! hold) {
 
