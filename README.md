@@ -2,14 +2,9 @@
 
 ## Introduction
 
-Describe The Project
+Many people today obsessively check the news. They rotate between websites and doomscroll on Twitter. Some people try to escape the cycle by performing a "digital purge." But this can disconnect them from the news entirely. There needs to be something in between the endless checking of sites and tossing out one's phone.
 
-## Description
-### What?
-
-### Why?
-
-### How?
+Our solution is to provide a service that aggregates an individual's favorite news sources into a short newsletter delivered by email daily or weekly. This would give people a way to control how often they check the news, and save them time spent flipping between websites. Users would be able to opt-in to machine learning which would tailor which stories are sent to them based on what kind of stories they click on.
 
 
 ## Functions
