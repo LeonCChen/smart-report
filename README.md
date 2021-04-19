@@ -35,6 +35,11 @@ Upload your demo video to youtube and put a link here. Basically, the video cont
 2. How to run the app
 3. Quick walkthrough of all the functions and their sub functions of your app one by one
 
+Please make it short and interesting!
+
+Sample: https://www.youtube.com/watch?v=Pr-JMqTkdEM
+
+How to record your screen: https://www.techradar.com/how-to/record-your-screen
 
 ## Team Members - Roles
 * Zack Rosa (email), TEAM LEADER  
