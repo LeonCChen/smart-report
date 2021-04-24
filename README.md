@@ -40,10 +40,10 @@ List all the functions with their sub functions of your application.
 1. [Create Netlify Account](https://app.netlify.com/signup/email)
 2. [Deploy the Website on Nelify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)
 3. [Add Env Variables](https://docs.netlify.com/configure-builds/environment-variables/)
-3.1 DATABASE (Name of Database)
-3.2 USERNAME (Username of User Accessing Account)
-3.3 PASSWORD (Password of the User)
-3.4 HOSTNAME (IP Address of the Database)
+	* DATABASE (Name of Database)
+	* USERNAME (Username of User Accessing Account)
+	* PASSWORD (Password of the User)
+	* HOSTNAME (IP Address of the Database)
 
 ## Getting Started
 ### Installation and Setup
