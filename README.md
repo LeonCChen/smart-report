@@ -36,13 +36,13 @@ List all the functions with their sub functions of your application.
 
 4. [Expose DataBase](https://mariadb.com/kb/en/configuring-mariadb-for-remote-client-access/)
 5. Some Useful Commands to Know
-	* mysqladmin -u admin -p version - LOGS INTO THE DATBASE
-	* CREATE DATABASE `birthdays`; - CREATES THE DATABASE WITH THE NAME `birthday`
-	* use [database]; - USE THE DATABASE
-	* show [database]; - LIST ALL THE DATABASE
-	* show tables; - SHOW TABLES IN THE DATABASE
-	* show columns from [tbl_name]; - SHOW THE COLUMNS TABLE NAME
-
+	
+		> mysqladmin -u admin -p version - LOGS INTO THE DATBASE
+		> CREATE DATABASE `birthdays`; - CREATES THE DATABASE WITH THE NAME `birthday`
+		> use [database]; - USE THE DATABASE
+		> show [database]; - LIST ALL THE DATABASE
+		> show tables; - SHOW TABLES IN THE DATABASE
+		> show columns from [tbl_name]; - SHOW THE COLUMNS TABLE NAME
 
 #### Netlify For Hosting the Site
 1. [Create Netlify Account](https://app.netlify.com/signup/email)
