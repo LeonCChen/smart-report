@@ -36,6 +36,9 @@ List all the functions with their sub functions of your application.
 
 4. [Expose DataBase](https://mariadb.com/kb/en/configuring-mariadb-for-remote-client-access/)
 
+#### Netlify - Hosting the Database
+
+
 ## Getting Started
 ### Installation and Setup
 List all the steps on how to install and setup your project
