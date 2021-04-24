@@ -30,8 +30,8 @@ List all the functions with their sub functions of your application.
 
 		> mysql [username] -p [password]
 		> CREATE DATABASE [Database Name];
-		> Use [Database Name]
-		> # Copy and Paste the Database_Creation_Script.txt
+		> Use [Database Name];
+		> # Copy and Paste the Database_Creation_Script.txt;
 
 4. [Expose DataBase](https://mariadb.com/kb/en/configuring-mariadb-for-remote-client-access/)
 
