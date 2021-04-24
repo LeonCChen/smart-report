@@ -53,15 +53,6 @@ List all the functions with their sub functions of your application.
 	* PASSWORD (Password of the User)
 	* HOSTNAME (IP Address of the Database)
 
-#### 
-
-
-## Getting Started
-### Installation and Setup
-List all the steps on how to install and setup your project
-### Run
-List all the steps on how to run your project
-
 ## Demo video
 
 Upload your demo video to youtube and put a link here. Basically, the video content is very much like the quick live demo of your product with the followings:
