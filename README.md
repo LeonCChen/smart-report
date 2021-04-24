@@ -45,6 +45,9 @@ List all the functions with their sub functions of your application.
 	* PASSWORD (Password of the User)
 	* HOSTNAME (IP Address of the Database)
 
+#### 
+
+
 ## Getting Started
 ### Installation and Setup
 List all the steps on how to install and setup your project
@@ -65,7 +68,7 @@ Sample: https://www.youtube.com/watch?v=Pr-JMqTkdEM
 How to record your screen: https://www.techradar.com/how-to/record-your-screen
 
 ## Team Members - Roles
-* Zack Rosa (email), TEAM LEADER  
+* Zack Rosa (email), Team Leader - Overload - GOD - Kami
 * Dillon Morse (email), Developer
 * Kyle Ferreira (email), Developer
 * Leon Chen (email), Developer
