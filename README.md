@@ -35,7 +35,7 @@ List all the functions with their sub functions of your application.
 		> # Copy and Paste the Database_Creation_Script.txt;
 
 4. [Expose DataBase](https://mariadb.com/kb/en/configuring-mariadb-for-remote-client-access/)
-5. Some Useful Commands to Know
+5. Some Useful Commands for MariaDB/MySQL to Know
 	
 		> mysqladmin -u admin -p version - LOGS INTO THE DATBASE
 		> CREATE DATABASE `birthdays`; - CREATES THE DATABASE WITH THE NAME `birthday`
