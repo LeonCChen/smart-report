@@ -22,6 +22,19 @@ List all the functions with their sub functions of your application.
 	* Read News Sources
 
 
+## Getting Started 
+### Installation and Setup
+1. Install [MaraiDB on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04)
+2. Review [SQL Commands](https://www.digitalocean.com/community/tutorials/introduction-to-queries-mysql)
+3. Run <DB_Create_Script> In Repo [Manage Database](https://www.digitalocean.com/community/tutorials/how-to-create-and-manage-databases-in-mysql-and-mariadb-on-a-cloud-server)
+
+		> mysql [username] -p [password]
+		> CREATE DATABASE [Database Name];
+		> Use [Database Name]
+		> # Copy and Paste the Database_Creation_Script.txt
+
+4. [Expose DataBase](https://mariadb.com/kb/en/configuring-mariadb-for-remote-client-access/)
+
 ## Getting Started
 ### Installation and Setup
 List all the steps on how to install and setup your project
