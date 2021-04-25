@@ -62,9 +62,9 @@ List all the functions with their sub functions of your application.
 4. Generate a new API Key
 5. Test connectivity to the Mailchimp Transactional API
 	* [Transactional Email Quickstart](https://mailchimp.com/developer/transactional/guides/quick-start/)	
-	* [Transactional Email References](https://mailchimp.com/developer/transactional/api/exports/)
-6. Send Emails
+6. Send Emails (And More)
 	* [Send Message](https://mailchimp.com/developer/transactional/api/messages/send-new-message/)
+	* [Transactional Email API References](https://mailchimp.com/developer/transactional/api/exports/)
 
 ## Demo video
 
