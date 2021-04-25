@@ -53,6 +53,19 @@ List all the functions with their sub functions of your application.
 	* PASSWORD (Password of the User)
 	* HOSTNAME (IP Address of the Database)
 
+#### Mailchimp Transactional Email - Setup Email Sending
+1. [Create Mailchimp Account](https://mailchimp.com/)
+2. [Purchase a Mailchimp Transactional Email Plan](https://mailchimp.com/pricing/transactional-email/)
+3. Setup and Verify a sending domain
+	* Verify Ownership of Sending Domain via confirmation email
+	* Edit DKIM Settings and SPF Settings
+4. Generate a new API Key
+5. Test connectivity to the Mailchimp Transactional API
+	* [Transactional Email Quickstart](https://mailchimp.com/developer/transactional/guides/quick-start/)	
+	* [Transactional Email References](https://mailchimp.com/developer/transactional/api/exports/)
+6. Send Emails
+	* [Send Message](https://mailchimp.com/developer/transactional/api/messages/send-new-message/)
+
 ## Demo video
 
 Upload your demo video to youtube and put a link here. Basically, the video content is very much like the quick live demo of your product with the followings:
