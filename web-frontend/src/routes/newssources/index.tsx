@@ -1,5 +1,6 @@
 import {Fragment, FunctionComponent, h} from 'preact';
 import {useContext, useEffect, useState} from 'preact/hooks';
+import {route} from 'preact-router';
 import ProgressiveImage from '../../components/progressive-image';
 import Store from '../../store';
 import style from './style.css';
@@ -97,6 +98,13 @@ const NewsSources: FunctionComponent = () => {
         tinyDataUri="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wgARCAAeABQDAREAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAQUCBgMECf/EABkBAAIDAQAAAAAAAAAAAAAAAAEDAAIEBf/aAAwDAQACEAMQAAAA7Z9DICEzFuVsmCBFLV7tbV56anpzmTDK/wD/xAArEAACAgEEAQIDCQAAAAAAAAABAgMEEQAFEiFBBjETYWIHIlFSgZGhweH/2gAIAQEAAT8Ap7VQqwRQLXwsfQUKMee8Ejo/LVylXNuPaIq5KS1nk5hCrdFFOQR9Wj6Cr11WvAp4xRqg5jJPEYz0Plp7U6b9VppaZYBV++jLkFuYHfX5Q2tysQ0Fk3hNueeWCtIOKsO05rkeBk8V8ZyB497dvhMVsSwqwHtIe9Ud2tXb5bcZ4pXhrqFzHwJyxyPfB9j1gfrq9dr2XhjU5X4oy4kIDKDnBwcMDxx3rfKW27/uL7pYrZ+IBwMlsr0MjoDOB/ut09YW6UQt03ZGMWAWGfJx1kfjr0j9om7b/NYnuCMJDGoAjjKnk2fqPhf51Z9WyQStCqP0zH92Zv71/8QAHREBAAIDAQADAAAAAAAAAAAAAQACAxESIRMiUf/aAAgBAgEBPwDp2sHxZ8yzk4WUF+u4H5OQr5KiDMfVK6JTEPjMmClDRDFP/8QAHBEBAAIDAAMAAAAAAAAAAAAAAQACAxEhEhMx/9oACAEDAQE/ACoE0PJ6Zt8wjzsXTCyvYoy1a3dscifJizWvuOTTP//Z"
         className={style.backgroundImg}
       />
+      <div type="button" class={style.accountButton} onClick={(): boolean => route('/account')}>
+        <p>Account</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class={style.iconUser}>
+          <path class={style.primary} d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" />
+          <path class={style.secondary} d="M21 20v-1a5 5 0 0 0-5-5H8a5 5 0 0 0-5 5v1c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2z" />
+        </svg>
+      </div>
       <h1 class={style.heading}>Your News Sources</h1>
       <div class={style.sources}>
         {sources.map((source, i) => (
@@ -134,7 +142,7 @@ const NewsSources: FunctionComponent = () => {
           </svg>
         </div>
       </div>
-    </Fragment>
+    </Fragment >
   );
 }
 

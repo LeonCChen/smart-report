@@ -8,6 +8,7 @@ import SignUp from '../routes/signup';
 import EmailCode from '../routes/emailcode';
 import Login from '../routes/login';
 import NewsSources from '../routes/newssources';
+import Account from '../routes/account';
 import NotFoundPage from '../routes/notfound';
 
 const App: FunctionalComponent = () => {
@@ -23,6 +24,7 @@ const App: FunctionalComponent = () => {
           <Route path="/signup/confirm" component={EmailCode} />
           <Route path="/login" component={Login} />
           <Route path="/news-sources" component={NewsSources} />
+          <Route path="/account" component={Account} />
           <NotFoundPage default />
         </Router>
       </div>
