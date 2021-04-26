@@ -32,7 +32,23 @@ async function asyncFunction() {
   */
 
   for (user_email of emails) {
-  
+ 
+    // SQL Command - Gets the email frequency of the Users
+    const sql_get_email_freq = ` SELECT email_freq FROM USER WHERE email='${email}' ;`
+
+    // Gets the email Frequency of the user with that email
+    const rows = await conn.query(sql_get_email_freq)
+
+    // Extract the email frequency from the returned array/object
+    const user_email_freq = rows[0].email_freq
+
+    // Checks if the Email Frequency of the email
+    // Users that have email frequency set to 1 will get an email daily user who have set their email frequency to 7 will get an single email Sunday
+    // To Send Email The User Either Needs email_frequency to 1 or if hey set it to 7 then it only sends on sunday
+    if ( (new Date().getDay() !== 6) && user_email_freq === 7 ) {
+      continue
+    }
+ 
     // SQL Command to retrive the USER NEWS source.
     var sql_read_news = `SELECT rss_feed FROM NEWS WHERE news_id IN (SELECT news_id FROM USER_NEWS WHERE user_id=(SELECT user_id FROM USER WHERE email='${user_email}') ) ;`;
 
