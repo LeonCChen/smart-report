@@ -1,4 +1,5 @@
 # The Smart Report
+##https://adoring-pare-ef65be.netlify.app/
 
 ## Introduction
 
@@ -67,15 +68,7 @@ List all the functions with their sub functions of your application.
 	* [Transactional Email API References](https://mailchimp.com/developer/transactional/api/exports/)
 
 ## Demo video
-
-Upload your demo video to youtube and put a link here. Basically, the video content is very much like the quick live demo of your product with the followings:
-1. Introduction
-2. How to run the app
-3. Quick walkthrough of all the functions
-
-Sample: https://www.youtube.com/watch?v=Pr-JMqTkdEM
-
-How to record your screen: https://www.techradar.com/how-to/record-your-screen
+### https://youtu.be/BY-HlKGaYR8
 
 ## Team Members - Roles
 * Zack Rosa (email), Team Lead
