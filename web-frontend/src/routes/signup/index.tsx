@@ -15,9 +15,12 @@ const SignUp: FunctionComponent = () => {
   const handleSubmit = async (): Promise<void> => {
     const {hash, salt} = encodePass(password);
     const response = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}&salt=${encodeURIComponent(salt)}`)
+
+    // go to verification code page if signup succeeded,
+    // otherwise indicate failure
     if (response.ok) {
       const newVerifyCode = await response.text();
-      setVerifyCode(newVerifyCode);
+      setVerifyCode(newVerifyCode); // used by verification page
       route('/signup/confirm');
     } else {
       setSubmitFailed(true);

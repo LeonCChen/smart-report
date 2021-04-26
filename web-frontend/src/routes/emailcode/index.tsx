@@ -10,6 +10,7 @@ const EmailCode: FunctionComponent = () => {
   const [wrongCode, setWrongCode] = useState(false);
   const {verifyCode, setVerifyCode} = useContext(Store);
 
+  // verification codes are stored locally for now
   const verify = (): void => {
     if (confirmCode === verifyCode) {
       setVerifyCode('');

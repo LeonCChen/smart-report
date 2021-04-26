@@ -28,6 +28,8 @@ const Account: FunctionComponent = () => {
     }
   }
 
+  // initialize the frequency radio buttons to the correct
+  // values on load
   useEffect(() => {
     if (email && token) {
       fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/user_get_frequency?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`)

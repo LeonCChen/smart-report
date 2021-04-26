@@ -6,7 +6,7 @@ import Store from '../../store';
 import style from './style.css';
 
 interface Source {
-  finalized: boolean;
+  finalized: boolean; // i.e. not being edited
   uri: string;
   id?: number;
 }
@@ -35,12 +35,16 @@ const NewsSources: FunctionComponent = () => {
     setSources(sources.concat(source));
   };
 
+  // replace URI in the source with the provided id with the
+  // provided URI
   const editSource = (id: number, uri: string): void => {
     setSources(sources.slice(0, id)
       .concat(Object.assign({}, sources[id], {uri}))
       .concat(sources.slice(id + 1)));
   };
 
+  // disables editing on a source and saves it to the
+  // database
   const finalizeSource = async (id: number): Promise<void> => {
     let response;
     if (sources[id].id) {
@@ -49,6 +53,9 @@ const NewsSources: FunctionComponent = () => {
       response = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/create_news_source?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}&newsSource=${encodeURIComponent(sources[id].uri)}`);
     }
     const dbId = await response.text();
+
+    // only update the source locally if the API method
+    // worked
     if (response.ok) {
       setSources(sources.slice(0, id)
         .concat(Object.assign({}, sources[id], {finalized: true, id: dbId}))
@@ -56,12 +63,14 @@ const NewsSources: FunctionComponent = () => {
     }
   };
 
+  // make a source editable
   const unfinalizeSource = (id: number): void => {
     setSources(sources.slice(0, id)
       .concat(Object.assign({}, sources[id], {finalized: false}))
       .concat(sources.slice(id + 1)));
   };
 
+  // delete a source here and in the database
   const removeSource = async (id: number): Promise<void> => {
     const response = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/delete_news_source?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}&newsSource=${encodeURIComponent(sources[id].uri)}&newsID=${sources[id].id}`);
     if (response.ok) {
@@ -70,6 +79,7 @@ const NewsSources: FunctionComponent = () => {
     }
   };
 
+  // populate this page with sources when it loads
   useEffect(() => {
     if (email && token) {
       fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/read_news_source?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`)

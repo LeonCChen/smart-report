@@ -12,6 +12,7 @@ import Account from '../routes/account';
 import NotFoundPage from '../routes/notfound';
 
 const App: FunctionalComponent = () => {
+  // initialize global state
   const [token, setToken] = useState('');
   const [email, setEmail] = useState('');
   const [verifyCode, setVerifyCode] = useState('');

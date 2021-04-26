@@ -13,23 +13,28 @@ const Login: FunctionComponent = () => {
   const {setEmail, setToken} = useContext(Store);
 
   const handleSubmit = async (): Promise<void> => {
+    // get the user's salt
     const saltResponse = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/get_salt?email=${encodeURIComponent(localEmail)}`)
     if (!saltResponse.ok) {
       setSubmitFailed(true);
       return;
     }
-
     const salt = await saltResponse.text();
+
+    // now hash their password and verify it with the API
     const {hash} = encodePass(password, salt);
     const loginResponse = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/get_token?email=${encodeURIComponent(localEmail)}&hash=${encodeURIComponent(hash)}`);
     if (!loginResponse.ok) {
       setSubmitFailed(true);
     }
 
+    // login succeeded -> we have an authentication token to
+    // send with API requests for verification
     const token = await loginResponse.text();
     setToken(token);
     setEmail(localEmail);
 
+    // go to the news sources page on login
     route('/news-sources');
   }
 
