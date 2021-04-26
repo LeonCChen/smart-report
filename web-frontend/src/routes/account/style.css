@@ -8,32 +8,25 @@
   object-position: 0 0;
 }
 
-.accountButton {
+.backButton {
   position: absolute;
-  right: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 148px;
-  justify-content: space-between;
   font-size: 24px;
   color: hsl(209, 61%, 16%);
 }
 
-.iconUser {
-  width: 45px;
-  height: 45px;
+.iconChevronLeft {
+  width: 60px;
+  height: 60px;
 }
 
-.iconUser .primary {
+.iconChevronLeft .primary {
   fill: hsl(209, 61%, 16%);
 }
 
-.iconUser .secondary {
-  fill: hsl(209, 61%, 16%);
-}
-
-.sources {
+.settings {
   position: relative;
   top: 205px;
   min-height: calc(100vh - 205px);
@@ -59,105 +52,52 @@
   margin: 0 auto;
 }
 
-.iconEdit {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: calc((68px - 30px) / 2);
-  right: 90px;
-  cursor: pointer;
-}
-
-.iconEdit .primary {
-  fill: hsl(210, 22%, 49%);
-}
-
-.iconEdit .secondary {
-  fill: hsl(210, 22%, 49%);
-}
-
-.iconClose {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: calc((68px - 30px) / 2);
-  right: 30px;
-  cursor: pointer;
-}
-
-.iconClose .primary {
-  fill: hsl(210, 22%, 49%);
-}
-
-.iconCheck {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: calc((68px - 30px) / 2);
-  right: 30px;
-  cursor: pointer;
-}
-
-.iconCheck .primary {
-  fill: hsl(210, 22%, 49%);
-}
-
-.source:first-of-type {
+.frequencySetting {
   border-top: 3px solid #9FB3C8;
-}
-
-.source {
   border-bottom: 3px solid #9FB3C8;
-  height: 68px;
+  height: 136px;
   position: relative;
-}
-
-.source p {
+  color: hsl(209, 61%, 16%);
+  text-align: center;
   font-size: 24px;
-  margin: 0;
-  position: relative;
-  top: 17px;
-  left: 14px;
-  max-width: 279px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.source input {
-  background: hsl(210, 31%, 80%);
-  width: calc(100% - 104px);
-  height: 40px;
-  border-radius: 5px;
-  border-width: 0;
-  margin-left: 14px;
-  margin-top: 12px;
-  padding: 0 10px;
-  font-size: 18px;
+.frequencySetting input {
+  margin-right: 15px;
 }
 
-.addSource {
+.frequencySetting label:first-of-type {
+  margin-right: 60px;
+}
+
+.deleteUser {
   cursor: pointer;
   border-bottom: 3px solid #9FB3C8;
   height: 68px;
   position: relative;
+  background-color: hsl(0, 91%, 69%);
+  color: hsl(210, 36%, 96%);
 }
 
-.addSource span {
+.deleteUser span {
   font-size: 24px;
   position: relative;
   top: 17px;
   left: calc((100% - 265px) / 2);
 }
 
-.iconAdd {
+.iconTrash {
   width: 30px;
   height: 30px;
   position: absolute;
   right: calc((100% - 265px) / 2);
-  top: calc((68px - 30px) / 2);
+  top: calc((63px - 30px) / 2);
 }
 
-.iconAdd .primary {
-  fill: hsl(210, 22%, 49%);
+.iconTrash .primary {
+  fill: hsl(210, 36%, 96%);
+}
+
+.iconTrash .secondary {
+  fill: hsl(210, 36%, 96%);
 }
