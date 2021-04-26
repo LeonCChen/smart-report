@@ -1,25 +1,27 @@
 import {Fragment, FunctionComponent, h} from 'preact';
-import {useState} from 'preact/hooks';
+import {useContext, useState} from 'preact/hooks';
 import {route} from 'preact-router';
 import ProgressiveImage from '../../components/progressive-image';
 import {encodePass} from '../../util/crypto';
+import Store from '../../store';
 import style from './style.css';
 
 const SignUp: FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitFailed, setSubmitFailed] = useState(false);
+  const {setVerifyCode} = useContext(Store);
 
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<void> => {
     const {hash, salt} = encodePass(password);
-    fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}&salt=${encodeURIComponent(salt)}`)
-      .then((response) => {
-        if (response.ok) {
-          route('/signup/confirm');
-        } else {
-          setSubmitFailed(true);
-        }
-      });
+    const response = await fetch(`https://focused-dijkstra-8ebf87.netlify.app/.netlify/functions/sign_up?email=${encodeURIComponent(email)}&hash=${encodeURIComponent(hash)}&salt=${encodeURIComponent(salt)}`)
+    if (response.ok) {
+      const newVerifyCode = await response.text();
+      setVerifyCode(newVerifyCode);
+      route('/signup/confirm');
+    } else {
+      setSubmitFailed(true);
+    }
   }
 
   return (

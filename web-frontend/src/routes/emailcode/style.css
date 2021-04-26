@@ -59,6 +59,10 @@
   display: block;
 }
 
+.invalid {
+  border: 2px solid hsl(356, 75%, 53%) !important;
+}
+
 .submitBtn {
   all: unset;
   margin: 26px auto 26px auto;

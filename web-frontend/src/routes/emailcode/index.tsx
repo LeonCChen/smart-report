@@ -1,10 +1,24 @@
 import {Fragment, FunctionComponent, h} from 'preact';
-import {useState} from 'preact/hooks';
+import {useContext, useState} from 'preact/hooks';
+import {route} from 'preact-router';
 import ProgressiveImage from '../../components/progressive-image';
+import Store from '../../store';
 import style from './style.css';
 
 const EmailCode: FunctionComponent = () => {
   const [confirmCode, setConfirmCode] = useState('');
+  const [wrongCode, setWrongCode] = useState(false);
+  const {verifyCode, setVerifyCode} = useContext(Store);
+
+  const verify = (): void => {
+    if (confirmCode === verifyCode) {
+      setVerifyCode('');
+      route('/');
+    } else {
+      console.log('wrong code');
+      setWrongCode(true);
+    }
+  };
 
   return (
     <Fragment>
@@ -17,10 +31,12 @@ const EmailCode: FunctionComponent = () => {
         <h2 class={style.heading}>You're Almost Done!</h2>
         <div class={style.form}>
           <p>We're sending you an email with a confirmation code. Please enter that code in the text box below.</p>
-          <input type="text" name="confirmation-code" value={confirmCode} onInput={(event): void => {
+          <input type="text" name="confirmation-code" class={wrongCode ? style.invalid : ''} value={confirmCode} onInput={(event): void => {
             setConfirmCode((event.target as HTMLInputElement).value);
           }} />
-          <button type="button" class={style.submitBtn}>Submit</button>
+          <button type="button" class={style.submitBtn} onClick={verify}>
+            Submit
+          </button>
         </div>
       </div>
     </Fragment>

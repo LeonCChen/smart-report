@@ -14,9 +14,10 @@ import NotFoundPage from '../routes/notfound';
 const App: FunctionalComponent = () => {
   const [token, setToken] = useState('');
   const [email, setEmail] = useState('');
+  const [verifyCode, setVerifyCode] = useState('');
 
   return (
-    <Store.Provider value={{token, setToken, email, setEmail}}>
+    <Store.Provider value={{token, setToken, email, setEmail, verifyCode, setVerifyCode}}>
       <div id="app">
         <Router>
           <Route path="/" component={Home} />
