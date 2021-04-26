@@ -12,7 +12,7 @@ exports.handler = async function (event) {
   const sql_get_user_id2 = `SELECT user_id FROM TOKEN WHERE token='${token}' ;`
 
   // Command the remove the news from USER_NEWS table
-  const sql_change_frequency = `UPDATE USER SET emailfreq=${frequency} WHERE email='${email}' ;`
+  const sql_change_frequency = `UPDATE USER SET email_freq=${frequency} WHERE email='${email}' ;`
 
   const conn = await mariadb.createConnection({
     host: process.env.HOST,
