@@ -71,7 +71,7 @@ List all the functions with their sub functions of your application.
 ### https://youtu.be/BY-HlKGaYR8
 
 ## Team Members - Roles
-* Zack Rosa (email), Team Lead
+* Zack Rosa (email), Team Lead and Mailer Developer
 * Dillon Morse (email), Frontend Developer
 * Kyle Ferreira (email), Backend Developer
 * Leon Chen (email), DBA and API Developer
