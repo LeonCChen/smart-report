@@ -34,7 +34,7 @@ async function asyncFunction() {
   for (user_email of emails) {
  
     // SQL Command - Gets the email frequency of the Users
-    const sql_get_email_freq = ` SELECT email_freq FROM USER WHERE email='${email}' ;`
+    const sql_get_email_freq = ` SELECT email_freq FROM USER WHERE email='${user_email}' ;`
 
     // Gets the email Frequency of the user with that email
     const rows = await conn.query(sql_get_email_freq)
