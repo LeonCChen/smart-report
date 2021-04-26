@@ -72,9 +72,9 @@ List all the functions with their sub functions of your application.
 
 ## Team Members - Roles
 * Zack Rosa (email), Team Lead
-* Dillon Morse (email), Developer
-* Kyle Ferreira (email), Developer
-* Leon Chen (email), Developer
+* Dillon Morse (email), Frontend Developer
+* Kyle Ferreira (email), Backend Developer
+* Leon Chen (email), DBA and API Developer
 
 
 ## Credit
