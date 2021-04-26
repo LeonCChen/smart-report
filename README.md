@@ -71,10 +71,10 @@ List all the functions with their sub functions of your application.
 ### https://youtu.be/BY-HlKGaYR8
 
 ## Team Members - Roles
-* Zack Rosa (email), Team Lead and Mailer Developer
-* Dillon Morse (email), Frontend Developer
-* Kyle Ferreira (email), Backend Developer
-* Leon Chen (email), DBA and API Developer
+* Zack Rosa (rosaz@wit.edu), Team Lead and Mailer Developer
+* Dillon Morse (morsed1@wit.edu), Frontend Developer
+* Kyle Ferreira (ferreiak3@wit.edu), Backend Developer
+* Leon Chen (chenl4@wit.edu), DBA and API Developer
 
 
 ## Credit
