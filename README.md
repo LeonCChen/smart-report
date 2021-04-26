@@ -71,9 +71,7 @@ List all the functions with their sub functions of your application.
 Upload your demo video to youtube and put a link here. Basically, the video content is very much like the quick live demo of your product with the followings:
 1. Introduction
 2. How to run the app
-3. Quick walkthrough of all the functions and their sub functions of your app one by one
-
-Please make it short and interesting!
+3. Quick walkthrough of all the functions
 
 Sample: https://www.youtube.com/watch?v=Pr-JMqTkdEM
 
