@@ -50,7 +50,7 @@ exports.handler = async function (event) {
         'Access-Control-Allow-Origin': '*'
       }
     }
-  } catch {
+  } catch (error) {
     console.log(error)
     // Returns An Error if Failure
     return {
